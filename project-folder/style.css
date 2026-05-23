@@ -1,0 +1,251 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  color: #111;
+}
+
+/* Header */
+header {
+  background-color: #4a90d9;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+header p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* Sections */
+.section {
+  background-color: #fff;
+  margin: 20px 16px;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+}
+
+/* Images */
+.img-rect {
+  width: 280px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.img-circle {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.img-oval {
+  width: 240px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50% / 30%;
+  display: block;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+table thead tr:first-child th {
+  background-color: #4a90d9;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+table thead tr:nth-child(2) th {
+  background-color: #4a90d9;
+  color: white;
+  padding: 8px;
+  text-align: center;
+}
+
+table tbody td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Form section layout */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 40px;
+}
+
+/* Labels */
+.section label {
+  display: block;
+  font-weight: bold;
+  font-size: 0.88rem;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Red asterisk */
+.req {
+  color: red;
+}
+
+/* Text inputs */
+.section input[type="text"],
+.section input[type="email"],
+.section input[type="password"],
+.section input[type="tel"],
+.section select,
+.section textarea {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  display: block;
+  color: #111;
+}
+
+/* File input */
+.section input[type="file"] {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  font-size: 0.85rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 4px 6px;
+  color: #111;
+  background-color: #fff;
+}
+
+/* Textarea */
+.section textarea {
+  height: 90px;
+  resize: vertical;
+}
+
+/* Select */
+.section select {
+  background-color: #fff;
+  color: #111;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Buttons */
+.btn-group {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 14px;
+  width: 100%;
+  max-width: 400px;
+}
+
+button {
+  background-color: #4a90d9;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #357abd;
+}
+
+.btn-reset {
+  background-color: #e05c5c;
+}
+
+.btn-reset:hover {
+  background-color: #c04444;
+}
+
+/* Radio group */
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 4px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: normal;
+  font-size: 0.88rem;
+  margin-top: 0;
+  cursor: pointer;
+  width: auto;
+}
+
+.radio-group input[type="radio"] {
+  cursor: pointer;
+}
+
+/* Checkbox group */
+.checkbox-group {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 4px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: normal;
+  font-size: 0.88rem;
+  margin-top: 0;
+  cursor: pointer;
+  width: auto;
+}
+
+.checkbox-group input[type="checkbox"] {
+  cursor: pointer;
+}

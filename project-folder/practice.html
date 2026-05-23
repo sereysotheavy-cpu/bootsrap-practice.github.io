@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Practice Webpage</title>
+    <link rel="icon" href="black-cat.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+  <header>
+    <h1>Student Practice Webpage</h1>
+    <p>HTML + CSS Practice (Forms + Table Advanced)</p>
+  </header>
+ 
+  <!-- Image Section -->
+  <div class="section">
+    <h2>Image Section</h2>
+    <img src="image/mountain view.jpg" alt="Image" class="img-rect">
+  </div>
+ 
+  <!-- Image Circle -->
+  <div class="section">
+    <h2>Image Circle</h2>
+    <img src="image/mountain view.jpg" alt="Image" class="img-circle">
+  </div>
+ 
+  <!-- Image Oval -->
+  <div class="section">
+    <h2>Image Oval</h2>
+    <img src="image/mountain view.jpg" alt="Image" class="img-oval">
+  </div>
+ 
+  <!-- Advanced Table -->
+  <div class="section">
+    <h2>Advanced Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th rowspan="2">Name</th>
+          <th colspan="2">Scores</th>
+          <th rowspan="2">Grade</th>
+        </tr>
+        <tr>
+          <th>Math</th>
+          <th>CS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alice</td>
+          <td>90</td>
+          <td>95</td>
+          <td>A</td>
+        </tr>
+        <tr>
+          <td>Bob</td>
+          <td>80</td>
+          <td>85</td>
+          <td>B</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <!-- Form 1 -->
+  <div class="section form-section">
+    <h2>Form 1: Basic Info</h2>
+ 
+    <label>Name <span class="req">*</span></label>
+    <input type="text">
+ 
+    <label>Email <span class="req">*</span></label>
+    <input type="email">
+ 
+    <label>Password <span class="req">*</span></label>
+    <input type="password">
+ 
+    <label>Upload File</label>
+    <input type="file">
+ 
+    <div class="btn-group">
+    <button>Submit</button>
+    <button>Reset</button>
+    </div>
+  </div>
+ 
+  <!-- Form 2 -->
+  <div class="section form-section">
+    <h2 style="text-align: left;">Form 2: Survey Form</h2>
+ 
+    <label>Choose Course <span class="req">*</span></label>
+    <select>
+      <option>-- Select --</option>
+      <option>HTML & CSS</option>
+      <option>JavaScript</option>
+      <option>Python</option>
+    </select>
+ 
+    <label>Gender</label>
+    <div class="radio-group">
+      <label><input type="radio" name="gender" value="male"> Male</label>
+      <label><input type="radio" name="gender" value="female"> Female</label>
+    </div>
+
+    <label>Skills</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox"> HTML</label>
+      <label><input type="checkbox"> CSS</label>
+      <label><input type="checkbox"> JS</label>
+    </div>
+
+    <label>Phone <span class="req">*</span></label>
+    <input type="tel">
+ 
+    <label>Message</label>
+    <textarea></textarea>
+    <button>Send</button>
+  </div>
+ 
+</body>
+</html>

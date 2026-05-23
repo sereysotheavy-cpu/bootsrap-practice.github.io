@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyBridge — Study Abroad Scholarship Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1A6FE8;
+    --primary-light: #4F94FF;
+    --primary-dark: #0D4DB5;
+    --primary-glow: rgba(26,111,232,0.18);
+    --accent: #00C9A7;
+    --accent2: #FF6B6B;
+    --accent3: #F59E0B;
+    --bg: #F0F5FF;
+    --surface: #FFFFFF;
+    --surface2: #EBF1FF;
+    --surface3: #F7F9FF;
+    --text: #0F1E3D;
+    --text2: #4A5A7A;
+    --text3: #8A9ABF;
+    --border: #D8E3F8;
+    --shadow: 0 4px 24px rgba(26,111,232,0.10);
+    --shadow-lg: 0 12px 40px rgba(26,111,232,0.16);
+    --radius: 18px;
+    --radius-sm: 10px;
+    --radius-lg: 26px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #0A1628;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 80px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    margin-bottom: 56px;
+    animation: fadeDown 0.6s ease;
+  }
+  .header-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .logo-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .logo-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 26px; font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.5px;
+  }
+  .logo-text span { color: var(--accent); }
+  .header p {
+    color: #8899BB;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* ── SCREENS GRID ── */
+  .screens-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 320px);
+    gap: 32px 28px;
+    justify-content: center;
+  }
+
+  /* ── PHONE FRAME ── */
+  .screen-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .screen-wrap:nth-child(2) { animation-delay: 0.08s; }
+  .screen-wrap:nth-child(3) { animation-delay: 0.16s; }
+  .screen-wrap:nth-child(4) { animation-delay: 0.24s; }
+  .screen-wrap:nth-child(5) { animation-delay: 0.32s; }
+  .screen-wrap:nth-child(6) { animation-delay: 0.40s; }
+
+  .screen-label {
+    font-family: 'Sora', sans-serif;
+    font-size: 11px; font-weight: 600;
+    color: #4A6088;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .phone {
+    width: 320px;
+    height: 620px;
+    background: var(--surface);
+    border-radius: 36px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.2);
+    position: relative;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .phone:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 36px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+  }
+
+  /* status bar */
+  .status-bar {
+    height: 36px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 22px;
+    font-size: 11px; font-weight: 600;
+    color: var(--text);
+  }
+  .status-bar.dark { color: #fff; }
+  .status-icons { display: flex; gap: 5px; align-items: center; }
+
+  /* ── SCREEN 1: LOGIN ── */
+  .s1-bg {
+    width: 100%; height: 100%;
+    background: linear-gradient(160deg, #0D4DB5 0%, #1A6FE8 45%, #4F94FF 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .s1-blob1 {
+    position: absolute; width: 240px; height: 240px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 50%;
+    top: -60px; right: -60px;
+  }
+  .s1-blob2 {
+    position: absolute; width: 160px; height: 160px;
+    background: rgba(0,201,167,0.18);
+    border-radius: 50%;
+    top: 100px; left: -50px;
+  }
+  .s1-content {
+    flex: 1;
+    display: flex; flex-direction: column;
+    align-items: center;
+    padding: 50px 28px 32px;
+    position: relative; z-index: 1;
+  }
+  .s1-logo-badge {
+    width: 68px; height: 68px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    margin-bottom: 18px;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .s1-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 26px; font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .s1-subtitle { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 32px; }
+  .s1-form-card {
+    width: 100%;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(16px);
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 24px 20px;
+  }
+  .s1-input-group { margin-bottom: 14px; }
+  .s1-input-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); letter-spacing: 0.8px; margin-bottom: 6px; text-transform: uppercase; }
+  .s1-input {
+    width: 100%; height: 42px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 0 14px;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+  }
+  .s1-input::placeholder { color: rgba(255,255,255,0.45); }
+  .s1-forgot { font-size: 11px; color: rgba(255,255,255,0.6); text-align: right; margin-bottom: 18px; cursor: pointer; }
+  .s1-btn {
+    width: 100%; height: 46px;
+    background: #fff;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px; font-weight: 700;
+    color: var(--primary);
+    cursor: pointer;
+    letter-spacing: 0.2px;
+    margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .s1-divider { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .s1-divider-line { flex: 1; height: 1px; background: rgba(255,255,255,0.2); }
+  .s1-divider-text { font-size: 11px; color: rgba(255,255,255,0.5); }
+  .s1-google-btn {
+    width: 100%; height: 42px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    font-size: 13px; color: #fff;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .s1-signup { font-size: 12px; color: rgba(255,255,255,0.6); text-align: center; margin-top: 18px; }
+  .s1-signup span { color: #fff; font-weight: 600; }
+
+  /* ── SCREEN 2: HOME ── */
+  .s2-bg {
+    background: var(--bg);
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .s2-header {
+    background: linear-gradient(135deg, #0D4DB5, #1A6FE8);
+    padding: 16px 22px 28px;
+    position: relative; overflow: hidden;
+  }
+  .s2-header-blob {
+    position: absolute; right: -20px; top: -20px;
+    width: 120px; height: 120px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+  .s2-top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .s2-greeting { font-size: 11px; color: rgba(255,255,255,0.7); margin-bottom: 2px; }
+  .s2-name { font-family: 'Sora', sans-serif; font-size: 17px; font-weight: 700; color: #fff; }
+  .s2-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #00A88B);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 700; color: #fff;
+    font-family: 'Sora', sans-serif;
+    border: 2px solid rgba(255,255,255,0.3);
+  }
+  .s2-search {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 14px;
+    padding: 10px 14px;
+    backdrop-filter: blur(8px);
+  }
+  .s2-search-text { font-size: 13px; color: rgba(255,255,255,0.6); }
+  .s2-body { flex: 1; padding: 18px 18px 0; overflow: hidden; }
+
+  .s2-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+  .s2-stat-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 14px;
+    box-shadow: var(--shadow);
+    position: relative; overflow: hidden;
+  }
+  .s2-stat-accent {
+    position: absolute; bottom: -10px; right: -10px;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    opacity: 0.1;
+  }
+  .s2-stat-icon { font-size: 18px; margin-bottom: 6px; }
+  .s2-stat-num { font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 800; color: var(--text); }
+  .s2-stat-label { font-size: 10px; color: var(--text3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+  .s2-section-title { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+  .s2-quick-btns { display: flex; gap: 8px; margin-bottom: 18px; }
+  .s2-quick-btn {
+    flex: 1; background: var(--surface); border-radius: 14px;
+    padding: 12px 8px; text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .s2-quick-btn-icon { font-size: 20px; margin-bottom: 5px; }
+  .s2-quick-btn-label { font-size: 10px; color: var(--text2); font-weight: 500; }
+
+  .s2-deadline-card {
+    background: linear-gradient(135deg, #FFF7ED, #FEF3C7);
+    border: 1px solid #FCD34D;
+    border-radius: 14px; padding: 12px 14px;
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 10px;
+  }
+  .s2-deadline-icon { font-size: 22px; }
+  .s2-deadline-title { font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 700; color: #92400E; }
+  .s2-deadline-sub { font-size: 10px; color: #B45309; }
+  .s2-deadline-badge {
+    margin-left: auto; background: #F59E0B;
+    border-radius: 8px; padding: 3px 9px;
+    font-size: 10px; font-weight: 700; color: #fff;
+  }
+
+  /* ── SCREEN 3: SEARCH ── */
+  .s3-bg {
+    background: var(--surface3);
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .s3-top {
+    background: #fff;
+    padding: 12px 18px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .s3-title-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .s3-back { width: 30px; height: 30px; background: var(--surface2); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .s3-page-title { font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); }
+  .s3-search-bar {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    border-radius: 14px; padding: 10px 14px;
+    margin-bottom: 12px;
+  }
+  .s3-search-text { font-size: 13px; color: var(--text3); }
+  .s3-filters { display: flex; gap: 7px; overflow: hidden; }
+  .s3-filter-chip {
+    padding: 5px 12px; border-radius: 20px;
+    font-size: 11px; font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .s3-filter-chip.active { background: var(--primary); color: #fff; }
+  .s3-filter-chip:not(.active) { background: var(--surface2); color: var(--text2); }
+
+  .s3-list { flex: 1; padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+  .s3-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 14px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .s3-card-top { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+  .s3-flag {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .s3-card-name { font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.3; }
+  .s3-card-country { font-size: 11px; color: var(--text3); margin-top: 2px; }
+  .s3-card-amount { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 800; color: var(--primary); margin-left: auto; white-space: nowrap; }
+  .s3-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+  .s3-tag { padding: 3px 9px; border-radius: 6px; font-size: 10px; font-weight: 600; }
+  .s3-tag-blue { background: var(--surface2); color: var(--primary); }
+  .s3-tag-green { background: #ECFDF5; color: #059669; }
+  .s3-tag-orange { background: #FFF7ED; color: #D97706; }
+  .s3-card-deadline { font-size: 10px; color: var(--text3); display: flex; align-items: center; gap: 4px; }
+  .s3-card-deadline-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); }
+
+  /* ── SCREEN 4: DETAIL ── */
+  .s4-bg {
+    background: var(--surface3);
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .s4-hero {
+    background: linear-gradient(160deg, #0D4DB5, #1A6FE8 60%, #3B82F6);
+    padding: 14px 20px 24px;
+    position: relative; overflow: hidden;
+  }
+  .s4-hero-blob { position: absolute; right: -30px; bottom: -30px; width: 130px; height: 130px; background: rgba(255,255,255,0.06); border-radius: 50%; }
+  .s4-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .s4-back-btn { width: 32px; height: 32px; background: rgba(255,255,255,0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #fff; }
+  .s4-bookmark { width: 32px; height: 32px; background: rgba(255,255,255,0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+  .s4-flag-big { font-size: 36px; margin-bottom: 8px; }
+  .s4-schol-name { font-family: 'Sora', sans-serif; font-size: 17px; font-weight: 800; color: #fff; line-height: 1.3; margin-bottom: 4px; }
+  .s4-schol-org { font-size: 12px; color: rgba(255,255,255,0.7); }
+  .s4-amount-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px; font-weight: 800; color: #fff;
+    margin-top: 10px;
+  }
+
+  .s4-body { flex: 1; padding: 16px 18px; overflow: hidden; display: flex; flex-direction: column; gap: 12px; }
+  .s4-info-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .s4-info-chip {
+    background: var(--surface);
+    border-radius: 12px; padding: 10px 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .s4-info-chip-label { font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600; margin-bottom: 3px; }
+  .s4-info-chip-val { font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 700; color: var(--text); }
+
+  .s4-req-title { font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 700; color: var(--text); }
+  .s4-req-list { display: flex; flex-direction: column; gap: 6px; }
+  .s4-req-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
+  .s4-req-check { width: 18px; height: 18px; border-radius: 6px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--primary); font-weight: 700; flex-shrink: 0; }
+  .s4-req-check.done { background: #ECFDF5; color: #059669; }
+
+  .s4-apply-btn {
+    width: 100%; height: 48px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border: none; border-radius: 16px;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px; font-weight: 700; color: #fff;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    box-shadow: 0 6px 20px rgba(26,111,232,0.4);
+    margin-top: auto;
+  }
+
+  /* ── SCREEN 5: DOCUMENTS ── */
+  .s5-bg {
+    background: var(--bg);
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .s5-header-bar {
+    background: #fff;
+    padding: 12px 18px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .s5-top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px; }
+  .s5-title { font-family: 'Sora', sans-serif; font-size: 17px; font-weight: 800; color: var(--text); }
+  .s5-subtitle { font-size: 12px; color: var(--text3); }
+  .s5-progress-bar-wrap { margin-top: 12px; }
+  .s5-progress-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text2); margin-bottom: 5px; }
+  .s5-progress-bar-bg { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+  .s5-progress-bar { height: 100%; width: 60%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 3px; }
+
+  .s5-list { flex: 1; padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+  .s5-doc-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 14px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .s5-doc-icon {
+    width: 42px; height: 42px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .s5-doc-name { font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+  .s5-doc-meta { font-size: 10px; color: var(--text3); }
+  .s5-doc-status {
+    margin-left: auto; padding: 4px 10px;
+    border-radius: 8px; font-size: 10px; font-weight: 700;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .s5-status-done { background: #ECFDF5; color: #059669; }
+  .s5-status-pending { background: #FFF7ED; color: #D97706; }
+  .s5-status-missing { background: #FEF2F2; color: #DC2626; }
+
+  .s5-upload-btn {
+    width: 100%; height: 46px;
+    background: var(--surface2);
+    border: 2px dashed var(--primary);
+    border-radius: 14px;
+    font-family: 'Sora', sans-serif;
+    font-size: 13px; font-weight: 600; color: var(--primary);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin-top: 2px;
+  }
+
+  /* ── SCREEN 6: STATUS TRACKER ── */
+  .s6-bg {
+    background: var(--surface3);
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .s6-header-bar {
+    background: #fff;
+    padding: 12px 18px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .s6-title { font-family: 'Sora', sans-serif; font-size: 17px; font-weight: 800; color: var(--text); margin-bottom: 3px; }
+  .s6-subtitle { font-size: 12px; color: var(--text3); }
+  .s6-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--border); }
+  .s6-tab {
+    flex: 1; padding: 10px 0; text-align: center;
+    font-size: 12px; font-weight: 600; color: var(--text3);
+    cursor: pointer; position: relative;
+  }
+  .s6-tab.active { color: var(--primary); }
+  .s6-tab.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--primary); border-radius: 2px; }
+
+  .s6-list { flex: 1; padding: 14px 18px; display: flex; flex-direction: column; gap: 12px; overflow: hidden; }
+  .s6-app-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 14px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .s6-app-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .s6-app-flag { font-size: 22px; }
+  .s6-app-name { font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 700; color: var(--text); }
+  .s6-app-org { font-size: 10px; color: var(--text3); }
+  .s6-app-status {
+    margin-left: auto; padding: 4px 10px;
+    border-radius: 8px; font-size: 10px; font-weight: 700;
+  }
+  .s6-status-submitted { background: #EFF6FF; color: #1D4ED8; }
+  .s6-status-review { background: #FFFBEB; color: #D97706; }
+  .s6-status-accepted { background: #ECFDF5; color: #059669; }
+  .s6-status-rejected { background: #FEF2F2; color: #DC2626; }
+
+  .s6-timeline { display: flex; align-items: center; gap: 0; }
+  .s6-step { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; }
+  .s6-step::after { content: ''; position: absolute; left: 50%; top: 12px; width: 100%; height: 2px; background: var(--border); z-index: 0; }
+  .s6-step:last-child::after { display: none; }
+  .s6-step-dot {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--border); color: var(--text3);
+    font-size: 9px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1;
+    border: 2px solid var(--border);
+  }
+  .s6-step-dot.done { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .s6-step-dot.active { background: var(--accent3); color: #fff; border-color: var(--accent3); }
+  .s6-step-label { font-size: 8px; color: var(--text3); margin-top: 4px; text-align: center; font-weight: 600; }
+  .s6-step-label.done { color: var(--primary); }
+  .s6-step-label.active { color: var(--accent3); }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    height: 60px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-around;
+    padding: 0 10px;
+  }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; }
+  .nav-icon { font-size: 18px; }
+  .nav-label { font-size: 9px; font-weight: 600; color: var(--text3); }
+  .nav-label.active { color: var(--primary); }
+  .nav-active-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--primary); }
+
+  /* ── CHAT FAB ── */
+  .chat-fab {
+    position: absolute;
+    bottom: 72px; right: 18px;
+    width: 46px; height: 46px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 16px rgba(26,111,232,0.4);
+    cursor: pointer;
+  }
+  .chat-badge {
+    position: absolute; top: -2px; right: -2px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--accent2);
+    font-size: 9px; font-weight: 700; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--surface);
+  }
+
+  /* Animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Footer note */
+  .footer-note {
+    margin-top: 40px;
+    text-align: center;
+    color: #3A4A6A;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+  .footer-note span { color: var(--primary); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-logo">
+    <div class="logo-icon">🌉</div>
+    <div class="logo-text">Study<span>Bridge</span></div>
+  </div>
+  <p>UX/UI Case Study — Mobile App Prototype · 6 Screens</p>
+</div>
+
+<!-- SCREENS GRID -->
+<div class="screens-grid">
+
+  <!-- ── SCREEN 1: LOGIN ── -->
+  <div class="screen-wrap">
+    <div class="screen-label">01 — Login</div>
+    <div class="phone">
+      <div class="s1-bg">
+        <div class="s1-blob1"></div>
+        <div class="s1-blob2"></div>
+        <div class="status-bar dark">
+          <span>9:41</span>
+          <div class="status-icons">
+            <span>●●●</span>
+            <span>WiFi</span>
+            <span>🔋</span>
+          </div>
+        </div>
+        <div class="s1-content">
+          <div class="s1-logo-badge">🌉</div>
+          <div class="s1-title">StudyBridge</div>
+          <div class="s1-subtitle">Your path to study abroad</div>
+          <div class="s1-form-card">
+            <div class="s1-input-group">
+              <div class="s1-input-label">Email Address</div>
+              <input class="s1-input" placeholder="you@university.edu" readonly>
+            </div>
+            <div class="s1-input-group">
+              <div class="s1-input-label">Password</div>
+              <input type="password" class="s1-input" placeholder="••••••••" readonly>
+            </div>
+            <div class="s1-forgot">Forgot password?</div>
+            <button class="s1-btn">Sign In →</button>
+            <div class="s1-divider">
+              <div class="s1-divider-line"></div>
+              <div class="s1-divider-text">or continue with</div>
+              <div class="s1-divider-line"></div>
+            </div>
+            <button class="s1-google-btn">🔵 Continue with Google</button>
+          </div>
+          <div class="s1-signup">Don't have an account? <span>Sign Up Free</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 2: HOME ── -->
+  <div class="screen-wrap">
+    <div class="screen-label">02 — Home</div>
+    <div class="phone" style="position:relative;">
+      <div class="s2-bg">
+        <div class="s2-header">
+          <div class="s2-header-blob"></div>
+          <div class="status-bar dark" style="padding:0;margin-bottom:10px;">
+            <span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.9)">9:41</span>
+            <div class="status-icons" style="color:rgba(255,255,255,0.8);font-size:10px;">●●● WiFi 🔋</div>
+          </div>
+          <div class="s2-top-row">
+            <div>
+              <div class="s2-greeting">Good morning 👋</div>
+              <div class="s2-name">Sophea Meas</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:20px;">🔔</span>
+              <div class="s2-avatar">SM</div>
+            </div>
+          </div>
+          <div class="s2-search">
+            <span style="font-size:14px;">🔍</span>
+            <span class="s2-search-text">Search scholarships...</span>
+            <span style="margin-left:auto;font-size:14px;">⚙️</span>
+          </div>
+        </div>
+
+        <div class="s2-body">
+          <div class="s2-stats">
+            <div class="s2-stat-card">
+              <div style="background:var(--primary);position:absolute;bottom:-10px;right:-10px;width:50px;height:50px;border-radius:50%;opacity:0.1;"></div>
+              <div class="s2-stat-icon">📋</div>
+              <div class="s2-stat-num">3</div>
+              <div class="s2-stat-label">Applications</div>
+            </div>
+            <div class="s2-stat-card">
+              <div style="background:var(--accent);position:absolute;bottom:-10px;right:-10px;width:50px;height:50px;border-radius:50%;opacity:0.1;"></div>
+              <div class="s2-stat-icon">📄</div>
+              <div class="s2-stat-num">5/8</div>
+              <div class="s2-stat-label">Documents</div>
+            </div>
+          </div>
+
+          <div class="s2-section-title">Quick Actions</div>
+          <div class="s2-quick-btns">
+            <div class="s2-quick-btn">
+              <div class="s2-quick-btn-icon">🔍</div>
+              <div class="s2-quick-btn-label">Search</div>
+            </div>
+            <div class="s2-quick-btn">
+              <div class="s2-quick-btn-icon">📁</div>
+              <div class="s2-quick-btn-label">Documents</div>
+            </div>
+            <div class="s2-quick-btn">
+              <div class="s2-quick-btn-icon">📊</div>
+              <div class="s2-quick-btn-label">Status</div>
+            </div>
+            <div class="s2-quick-btn">
+              <div class="s2-quick-btn-icon">💬</div>
+              <div class="s2-quick-btn-label">Chat</div>
+            </div>
+          </div>
+
+          <div class="s2-section-title">Upcoming Deadlines</div>
+          <div class="s2-deadline-card">
+            <div class="s2-deadline-icon">⚠️</div>
+            <div>
+              <div class="s2-deadline-title">MEXT Scholarship</div>
+              <div class="s2-deadline-sub">🇯🇵 Japan · Due in 3 days</div>
+            </div>
+            <div class="s2-deadline-badge">Urgent</div>
+          </div>
+          <div class="s2-deadline-card" style="background: linear-gradient(135deg,#EFF6FF,#DBEAFE);border-color:#BFDBFE;">
+            <div class="s2-deadline-icon">📅</div>
+            <div>
+              <div class="s2-deadline-title" style="color:#1E3A8A;">Chevening Scholarship</div>
+              <div class="s2-deadline-sub" style="color:#1D4ED8;">🇬🇧 UK · Due in 2 weeks</div>
+            </div>
+            <div class="s2-deadline-badge" style="background:#3B82F6;">14d</div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-nav">
+        <div class="nav-item"><span class="nav-icon">🏠</span><span class="nav-label active">Home</span><div class="nav-active-dot"></div></div>
+        <div class="nav-item"><span class="nav-icon">🔍</span><span class="nav-label">Search</span></div>
+        <div class="nav-item"><span class="nav-icon">📁</span><span class="nav-label">Docs</span></div>
+        <div class="nav-item"><span class="nav-icon">📊</span><span class="nav-label">Status</span></div>
+        <div class="nav-item"><span class="nav-icon">👤</span><span class="nav-label">Profile</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 3: SEARCH ── -->
+  <div class="screen-wrap">
+    <div class="screen-label">03 — Search</div>
+    <div class="phone">
+      <div class="s3-bg">
+        <div class="s3-top">
+          <div class="status-bar" style="padding:0;margin-bottom:10px;">
+            <span>9:41</span>
+            <div class="status-icons" style="font-size:10px;">●●● 🔋</div>
+          </div>
+          <div class="s3-title-row">
+            <div class="s3-back">←</div>
+            <div class="s3-page-title">Scholarships</div>
+            <div style="font-size:18px;">🔔</div>
+          </div>
+          <div class="s3-search-bar">
+            <span>🔍</span>
+            <span class="s3-search-text">Country, university, field...</span>
+            <span style="margin-left:auto;font-size:13px;">⚙️</span>
+          </div>
+          <div class="s3-filters">
+            <div class="s3-filter-chip active">All</div>
+            <div class="s3-filter-chip">🇯🇵 Japan</div>
+            <div class="s3-filter-chip">🇬🇧 UK</div>
+            <div class="s3-filter-chip">🇦🇺 Australia</div>
+          </div>
+        </div>
+        <div class="s3-list">
+          <div class="s3-card">
+            <div class="s3-card-top">
+              <div class="s3-flag" style="background:#FFF0F0;">🇯🇵</div>
+              <div>
+                <div class="s3-card-name">MEXT Government Scholarship</div>
+                <div class="s3-card-country">Japan · Ministry of Education</div>
+              </div>
+              <div class="s3-card-amount">¥2.4M/yr</div>
+            </div>
+            <div class="s3-tags">
+              <span class="s3-tag s3-tag-blue">Undergraduate</span>
+              <span class="s3-tag s3-tag-green">Full Funded</span>
+              <span class="s3-tag s3-tag-orange">STEM</span>
+            </div>
+            <div class="s3-card-deadline"><div class="s3-card-deadline-dot"></div>Deadline: June 15, 2025</div>
+          </div>
+          <div class="s3-card">
+            <div class="s3-card-top">
+              <div class="s3-flag" style="background:#F0F4FF;">🇬🇧</div>
+              <div>
+                <div class="s3-card-name">Chevening Scholarship</div>
+                <div class="s3-card-country">United Kingdom · FCO</div>
+              </div>
+              <div class="s3-card-amount">£18K/yr</div>
+            </div>
+            <div class="s3-tags">
+              <span class="s3-tag s3-tag-blue">Master's</span>
+              <span class="s3-tag s3-tag-green">Full Funded</span>
+            </div>
+            <div class="s3-card-deadline"><div class="s3-card-deadline-dot" style="background:#F59E0B;"></div>Deadline: Jul 3, 2025</div>
+          </div>
+          <div class="s3-card">
+            <div class="s3-card-top">
+              <div class="s3-flag" style="background:#F0FFF4;">🇦🇺</div>
+              <div>
+                <div class="s3-card-name">Australia Awards Scholarship</div>
+                <div class="s3-card-country">Australia · DFAT</div>
+              </div>
+              <div class="s3-card-amount">A$35K/yr</div>
+            </div>
+            <div class="s3-tags">
+              <span class="s3-tag s3-tag-blue">Master's</span>
+              <span class="s3-tag s3-tag-blue">PhD</span>
+              <span class="s3-tag s3-tag-green">Full Funded</span>
+            </div>
+            <div class="s3-card-deadline"><div class="s3-card-deadline-dot" style="background:#10B981;"></div>Deadline: Aug 30, 2025</div>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-item"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></div>
+          <div class="nav-item"><span class="nav-icon">🔍</span><span class="nav-label active">Search</span><div class="nav-active-dot"></div></div>
+          <div class="nav-item"><span class="nav-icon">📁</span><span class="nav-label">Docs</span></div>
+          <div class="nav-item"><span class="nav-icon">📊</span><span class="nav-label">Status</span></div>
+          <div class="nav-item"><span class="nav-icon">👤</span><span class="nav-label">Profile</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 4: DETAIL ── -->
+  <div class="screen-wrap">
+    <div class="screen-label">04 — Detail</div>
+    <div class="phone">
+      <div class="s4-bg">
+        <div class="s4-hero">
+          <div class="s4-hero-blob"></div>
+          <div class="status-bar dark" style="padding:0;margin-bottom:12px;">
+            <span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.9)">9:41</span>
+            <div class="status-icons" style="color:rgba(255,255,255,0.8);font-size:10px;">●●● 🔋</div>
+          </div>
+          <div class="s4-nav">
+            <div class="s4-back-btn">←</div>
+            <div class="s4-bookmark">🔖</div>
+          </div>
+          <div class="s4-flag-big">🇯🇵</div>
+          <div class="s4-schol-name">MEXT Government<br>Scholarship 2025</div>
+          <div class="s4-schol-org">Ministry of Education, Culture, Sports, Science and Technology</div>
+          <div class="s4-amount-badge">💴 ¥2,400,000 / year · Full Funded</div>
+        </div>
+
+        <div class="s4-body">
+          <div class="s4-info-row">
+            <div class="s4-info-chip">
+              <div class="s4-info-chip-label">Deadline</div>
+              <div class="s4-info-chip-val">Jun 15, 2025</div>
+            </div>
+            <div class="s4-info-chip">
+              <div class="s4-info-chip-label">Degree</div>
+              <div class="s4-info-chip-val">Undergraduate</div>
+            </div>
+            <div class="s4-info-chip">
+              <div class="s4-info-chip-label">Duration</div>
+              <div class="s4-info-chip-val">5 Years</div>
+            </div>
+            <div class="s4-info-chip">
+              <div class="s4-info-chip-label">Field</div>
+              <div class="s4-info-chip-val">All Fields</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="s4-req-title" style="margin-bottom:8px;">Required Documents</div>
+            <div class="s4-req-list">
+              <div class="s4-req-item"><div class="s4-req-check done">✓</div>Passport (valid 2+ years)</div>
+              <div class="s4-req-item"><div class="s4-req-check done">✓</div>Academic Transcript</div>
+              <div class="s4-req-item"><div class="s4-req-check done">✓</div>JLPT / IELTS Certificate</div>
+              <div class="s4-req-item"><div class="s4-req-check">!</div>Recommendation Letter (2)</div>
+              <div class="s4-req-item"><div class="s4-req-check">!</div>Research Proposal</div>
+            </div>
+          </div>
+
+          <button class="s4-apply-btn">Apply Now →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 5: DOCUMENTS ── -->
+  <div class="screen-wrap">
+    <div class="screen-label">05 — Documents</div>
+    <div class="phone">
+      <div class="s5-bg">
+        <div class="s5-header-bar">
+          <div class="status-bar" style="padding:0;margin-bottom:10px;">
+            <span>9:41</span>
+            <div class="status-icons" style="font-size:10px;">●●● 🔋</div>
+          </div>
+          <div class="s5-top-row">
+            <div class="s5-title">My Documents</div>
+            <span style="font-size:18px;">➕</span>
+          </div>
+          <div class="s5-subtitle">Upload and manage your files</div>
+          <div class="s5-progress-bar-wrap">
+            <div class="s5-progress-label">
+              <span>Completion</span>
+              <span style="color:var(--primary);font-weight:700;">5 / 8 docs</span>
+            </div>
+            <div class="s5-progress-bar-bg">
+              <div class="s5-progress-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="s5-list">
+          <div class="s5-doc-card">
+            <div class="s5-doc-icon" style="background:#EFF6FF;">🛂</div>
+            <div>
+              <div class="s5-doc-name">Passport</div>
+              <div class="s5-doc-meta">passport_2024.pdf · 2.1 MB</div>
+            </div>
+            <div class="s5-doc-status s5-status-done">✓ Uploaded</div>
+          </div>
+          <div class="s5-doc-card">
+            <div class="s5-doc-icon" style="background:#ECFDF5;">🎓</div>
+            <div>
+              <div class="s5-doc-name">Academic Transcript</div>
+              <div class="s5-doc-meta">transcript_2024.pdf · 1.8 MB</div>
+            </div>
+            <div class="s5-doc-status s5-status-done">✓ Uploaded</div>
+          </div>
+          <div class="s5-doc-card">
+            <div class="s5-doc-icon" style="background:#ECFDF5;">🗣️</div>
+            <div>
+              <div class="s5-doc-name">IELTS Certificate</div>
+              <div class="s5-doc-meta">ielts_score_7.5.pdf · 0.9 MB</div>
+            </div>
+            <div class="s5-doc-status s5-status-done">✓ Uploaded</div>
+          </div>
+          <div class="s5-doc-card">
+            <div class="s5-doc-icon" style="background:#FFF7ED;">📝</div>
+            <div>
+              <div class="s5-doc-name">Recommendation Letter 1</div>
+              <div class="s5-doc-meta">Not uploaded yet</div>
+            </div>
+            <div class="s5-doc-status s5-status-pending">⏳ Pending</div>
+          </div>
+          <div class="s5-doc-card">
+            <div class="s5-doc-icon" style="background:#FEF2F2;">📋</div>
+            <div>
+              <div class="s5-doc-name">Research Proposal</div>
+              <div class="s5-doc-meta">Required for MEXT</div>
+            </div>
+            <div class="s5-doc-status s5-status-missing">✗ Missing</div>
+          </div>
+          <button class="s5-upload-btn">☁️ Upload Document</button>
+        </div>
+
+        <div class="bottom-nav">
+          <div class="nav-item"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></div>
+          <div class="nav-item"><span class="nav-icon">🔍</span><span class="nav-label">Search</span></div>
+          <div class="nav-item"><span class="nav-icon">📁</span><span class="nav-label active">Docs</span><div class="nav-active-dot"></div></div>
+          <div class="nav-item"><span class="nav-icon">📊</span><span class="nav-label">Status</span></div>
+          <div class="nav-item"><span class="nav-icon">👤</span><span class="nav-label">Profile</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 6: STATUS ── -->
+  <div class="screen-wrap">
+    <div class="screen-label">06 — Status Tracker</div>
+    <div class="phone" style="position:relative;">
+      <div class="s6-bg">
+        <div class="s6-header-bar">
+          <div class="status-bar" style="padding:0;margin-bottom:10px;">
+            <span>9:41</span>
+            <div class="status-icons" style="font-size:10px;">●●● 🔋</div>
+          </div>
+          <div class="s6-title">Applications</div>
+          <div class="s6-subtitle">Track your scholarship progress</div>
+        </div>
+        <div class="s6-tabs">
+          <div class="s6-tab active">All (3)</div>
+          <div class="s6-tab">Active</div>
+          <div class="s6-tab">Accepted</div>
+        </div>
+
+        <div class="s6-list">
+          <div class="s6-app-card">
+            <div class="s6-app-top">
+              <span class="s6-app-flag">🇯🇵</span>
+              <div>
+                <div class="s6-app-name">MEXT Scholarship</div>
+                <div class="s6-app-org">Japan · Applied Apr 10</div>
+              </div>
+              <div class="s6-app-status s6-status-review">🔄 Under Review</div>
+            </div>
+            <div class="s6-timeline">
+              <div class="s6-step">
+                <div class="s6-step-dot done">✓</div>
+                <div class="s6-step-label done">Applied</div>
+              </div>
+              <div class="s6-step">
+                <div class="s6-step-dot done">✓</div>
+                <div class="s6-step-label done">Docs</div>
+              </div>
+              <div class="s6-step">
+                <div class="s6-step-dot active">●</div>
+                <div class="s6-step-label active">Review</div>
+              </div>
+              <div class="s6-step">
+                <div class="s6-step-dot">?</div>
+                <div class="s6-step-label">Interview</div>
+              </div>
+              <div class="s6-step">
+                <div class="s6-step-dot">🏅</div>
+                <div class="s6-step-label">Result</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="s6-app-card">
+            <div class="s6-app-top">
+              <span class="s6-app-flag">🇦🇺</span>
+              <div>
+                <div class="s6-app-name">Australia Awards</div>
+                <div class="s6-app-org">Australia · Applied Mar 2</div>
+              </div>
+              <div class="s6-app-status s6-status-accepted">🎉 Accepted!</div>
+            </div>
+            <div class="s6-timeline">
+              <div class="s6-step"><div class="s6-step-dot done">✓</div><div class="s6-step-label done">Applied</div></div>
+              <div class="s6-step"><div class="s6-step-dot done">✓</div><div class="s6-step-label done">Docs</div></div>
+              <div class="s6-step"><div class="s6-step-dot done">✓</div><div class="s6-step-label done">Review</div></div>
+              <div class="s6-step"><div class="s6-step-dot done">✓</div><div class="s6-step-label done">Interview</div></div>
+              <div class="s6-step"><div class="s6-step-dot done" style="background:#059669;">✓</div><div class="s6-step-label done" style="color:#059669;">Result</div></div>
+            </div>
+          </div>
+
+          <div class="s6-app-card">
+            <div class="s6-app-top">
+              <span class="s6-app-flag">🇬🇧</span>
+              <div>
+                <div class="s6-app-name">Chevening Scholarship</div>
+                <div class="s6-app-org">UK · Applied May 1</div>
+              </div>
+              <div class="s6-app-status s6-status-submitted">📤 Submitted</div>
+            </div>
+            <div class="s6-timeline">
+              <div class="s6-step"><div class="s6-step-dot done">✓</div><div class="s6-step-label done">Applied</div></div>
+              <div class="s6-step"><div class="s6-step-dot active">●</div><div class="s6-step-label active">Docs</div></div>
+              <div class="s6-step"><div class="s6-step-dot">?</div><div class="s6-step-label">Review</div></div>
+              <div class="s6-step"><div class="s6-step-dot">?</div><div class="s6-step-label">Interview</div></div>
+              <div class="s6-step"><div class="s6-step-dot">🏅</div><div class="s6-step-label">Result</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-nav">
+          <div class="nav-item"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></div>
+          <div class="nav-item"><span class="nav-icon">🔍</span><span class="nav-label">Search</span></div>
+          <div class="nav-item"><span class="nav-icon">📁</span><span class="nav-label">Docs</span></div>
+          <div class="nav-item"><span class="nav-icon">📊</span><span class="nav-label active">Status</span><div class="nav-active-dot"></div></div>
+          <div class="nav-item"><span class="nav-icon">👤</span><span class="nav-label">Profile</span></div>
+        </div>
+      </div>
+      <div class="chat-fab">
+        💬
+        <div class="chat-badge">2</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-note">
+  StudyBridge · UX/UI Case Study · <span>Figma Reference Prototype</span> · 6 Mobile Screens
+</div>
+
+</body>
+</html>
